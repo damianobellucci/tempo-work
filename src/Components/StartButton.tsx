@@ -1,13 +1,13 @@
 import React from "react";
 
 interface interfaceStartButton {
-  stop: Function;
+  start: Function;
 }
 
 export default function StartButton(props: interfaceStartButton): JSX.Element {
   return (
     <>
-      <button onClick={() => props.stop()}>start</button>
+      <button onClick={() => props.start()}>start</button>
     </>
   );
 }
