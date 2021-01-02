@@ -7,9 +7,9 @@ interface interfaceTimeSetter {
 
 export default function TimeSetter(props: interfaceTimeSetter): JSX.Element {
   return (
-    <>
+    <div>
       <button onClick={() => props.addMinute()}>+</button>
       <button onClick={() => props.removeMinute()}>-</button>
-    </>
+    </div>
   );
 }

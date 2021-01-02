@@ -9,19 +9,32 @@ import * as TimePreset from "../Utils/TimePresets";
 
 import { useState } from "react";
 
+const styleApp: React.CSSProperties = {
+  margin: "20%",
+};
+
+const styleCountDownModule: React.CSSProperties = {
+  alignItems: "center",
+  justifyContent: "center",
+  display: "flex",
+  margin: "10%",
+  flexDirection: "column",
+};
+
 function App() {
   const [time, setTime]: [number, Function] = useState(TimePreset.defaultTime);
   const [started, setStarted]: [boolean, Function] = useState(false);
 
   return (
-    <div className="App">
+    <div className="App" style={styleApp}>
       {!started && (
-        <>
+        <div style={styleCountDownModule}>
           <ShowTime time={time} text="minutes"></ShowTime>
           <TimeSetter
             addMinute={() => setTime(time + TimePreset.oneMinute)}
             removeMinute={() =>
-              time >= 2 && setTime(time - TimePreset.oneMinute)
+              time > TimePreset.oneMinute &&
+              setTime(time - TimePreset.oneMinute)
             }
           ></TimeSetter>
           <StartButton
@@ -29,16 +42,18 @@ function App() {
               setStarted(true);
             }}
           ></StartButton>
-        </>
+        </div>
       )}
       {started && (
         <>
-          <Countdown time={time}></Countdown>
-          <StopButton
-            stop={() => {
-              setStarted(false);
-            }}
-          ></StopButton>
+          <div style={styleCountDownModule}>
+            <Countdown time={time}></Countdown>
+            <StopButton
+              stop={() => {
+                setStarted(false);
+              }}
+            ></StopButton>
+          </div>
         </>
       )}
     </div>
